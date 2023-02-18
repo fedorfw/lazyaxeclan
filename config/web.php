@@ -42,14 +42,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+    ],
+
+    'modules' => [
+        'users' => [
+            'class' => \users\app\UsersModule::class,
+        ],
     ],
     'params' => $params,
 ];

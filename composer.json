@@ -17,7 +17,15 @@
         "php": ">=7.4.0",
         "yiisoft/yii2": "~2.0.45",
         "yiisoft/yii2-bootstrap5": "~2.0.2",
-        "yiisoft/yii2-symfonymailer": "~2.0.3"
+        "yiisoft/yii2-symfonymailer": "~2.0.3",
+        "doctrine/orm": "^2.12",
+        "ext-json": "*",
+        "league/fractal": "^0.20.1",
+        "udokmeci/yii2-phone-validator": "^1.0",
+        "webmozart/assert": "^1.11",
+        "phpoffice/phpspreadsheet": "^1.25",
+        "yiisoft/yii2-redis": "^2.0",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -71,5 +79,11 @@
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ]
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "users\\": "modules/users"
+        }
+    }
 }
