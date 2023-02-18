@@ -5,7 +5,7 @@
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use yii\helpers\Html;
-require_once "../../telegramBot/turtleBot.php";
+include_once "../../telegramBot/turtleBot.php";
 
 //class HandleUser
 //{
@@ -26,7 +26,7 @@ $method = 'sendMessage';
 $send_data = [
     'text'   => "Привет со странички сайта Клан Ленивого Топора"
 ];
-$res = sendTelegram($method, $send_data);
+sendTelegram($method, $send_data);
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
