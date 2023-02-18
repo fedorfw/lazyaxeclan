@@ -5,7 +5,7 @@
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use yii\helpers\Html;
-include_once "../../telegramBot/turtleBot.php";
+include_once __DIR__."../../telegramBot/turtleBot.php";
 
 //class HandleUser
 //{
