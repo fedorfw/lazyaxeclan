@@ -1,5 +1,4 @@
 <?php
-require_once "../config/telegramToken.php";
 
 /** @var yii\web\View $this */
 

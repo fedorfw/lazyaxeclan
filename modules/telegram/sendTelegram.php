@@ -2,6 +2,7 @@
 
 namespace  telegram;
 
+require_once "../config/telegramToken.php";
 class sendTelegram
 {
     public static function sendTelegramMessage($method, $data, $headers = [])
