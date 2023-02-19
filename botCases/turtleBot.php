@@ -1,7 +1,9 @@
 <?php
 
-require_once('weatherApi.php');
 use telegram\sendTelegram;
+
+require_once('weatherApi.php');
+require_once ('../modules/telegram/sendTelegram.php');
 
 $data = json_decode(file_get_contents('php://input'), TRUE);
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
