@@ -26,7 +26,7 @@ $method = 'sendMessage';
 $send_data = [
     'text'   => "Привет со странички сайта Клан Ленивого Топора"
 ];
-$send_data['chat_id'] = '@lazyaxeclan';
+$send_data['chat_id'] = '@lazyAxeClan';
 sendTelegram($method, $send_data);
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
