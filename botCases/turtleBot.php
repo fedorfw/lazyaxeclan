@@ -1,15 +1,11 @@
 <?php
 
-namespace telegram;
-
-//require_once('../../botCases/weatherApi.php');
+require_once('weatherApi.php');
 use telegram\sendTelegram;
 
 $data = json_decode(file_get_contents('php://input'), TRUE);
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
 $message = mb_strtolower(($data['text'] ? $data['text'] : $data['data']),'utf-8');
-
-echo 'LazyAxeClanTelegramBot';
 
 # Обрабатываем сообщение
 switch ($message)
@@ -58,4 +54,15 @@ switch ($message)
 $send_data['chat_id'] = $data['chat']['id'];
 $res = sendTelegram::sendTelegramMessage($method, $send_data);
 // setWebhook
-//
+// https://api.telegram.org/bot6246160973:AAEzhH3DfMBqieE6bmXkSk3vmC02QS7-CWc/setWebhook?url=https://lazyaxeclan.site/botCases/turtleBot.php
+?>
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
+<head>
+    <title>TurtleBot</title>
+</head>
+<body>
+<h1>Turtle Bot</h1>
+</body>
+</html>
+

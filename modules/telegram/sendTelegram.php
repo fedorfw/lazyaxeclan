@@ -1,6 +1,6 @@
 <?php
 
-namespace  telegram;
+namespace telegram;
 
 require_once "../config/telegramToken.php";
 class sendTelegram
