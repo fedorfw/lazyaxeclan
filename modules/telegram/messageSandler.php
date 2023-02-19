@@ -1,11 +1,15 @@
 <?php
 require_once __DIR__.'/sendTelegram.php';
 use telegram\sendTelegram;
+use Webmozart\Assert\Assert;
 
 $method = 'sendMessage';
 
+$text = $_POST['telegramMessage'];
+Assert::NotNull($text, 'нельзя отправить пустое сообщение');
+
 $send_data = [
-'text'   => $_POST['telegramMessage']
+'text'   => $text
 ];
 $send_data['chat_id'] = '@lazyAxeClan';
 
