@@ -1,6 +1,6 @@
 <?php
 
-namespace  telegramBot;
+namespace  telegram;
 
 class sendTelegram
 {

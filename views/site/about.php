@@ -1,8 +1,9 @@
 <?php
-require_once "../telegramBot/turtleBot.php";
+require_once "../config/telegramToken.php";
 
 /** @var yii\web\View $this */
 
+use telegram\sendTelegram;
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use yii\helpers\Html;
@@ -22,12 +23,14 @@ use yii\helpers\Html;
 //}
 //$a = Yii::$container->get(UserRepositoryInterface::class)->testGet("hi");
 $email = "fedorfw@mail.ru";
+
+
 $method = 'sendMessage';
 $send_data = [
     'text'   => "Привет со странички сайта Клан Ленивого Топора"
 ];
 $send_data['chat_id'] = '@lazyAxeClan';
-sendTelegram($method, $send_data);
+$res = sendTelegram::sendTelegramMessage($method, $send_data);
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

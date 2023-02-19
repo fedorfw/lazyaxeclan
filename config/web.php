@@ -54,6 +54,9 @@ $config = [
         'users' => [
             'class' => \users\app\UsersModule::class,
         ],
+        'telegram' => [
+            'class' => \telegram\sendTelegram::class,
+        ],
     ],
     'params' => $params,
 ];

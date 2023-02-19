@@ -84,7 +84,8 @@
 
     "autoload": {
         "psr-4": {
-            "users\\": "modules/users"
+            "users\\": "modules/users",
+            "telegram\\": "modules/telegram"
         }
     }
 }
