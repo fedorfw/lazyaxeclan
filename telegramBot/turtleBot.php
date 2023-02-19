@@ -63,7 +63,7 @@ switch ($message)
 
 # Добавляем данные пользователя
 //$send_data['chat_id'] = $data['chat']['id'];
-$send_data['chat_id'] = '@lazyAxeClan';
+$send_data['chat_id'] = '@lazyaxeclan';
 $res = sendTelegram($method, $send_data);
 
 function sendTelegram($method, $data, $headers = [])
