@@ -2,7 +2,7 @@
 
 namespace telegram;
 
-require_once('../../botCases/weatherApi.php');
+//require_once('../../botCases/weatherApi.php');
 use telegram\sendTelegram;
 
 $data = json_decode(file_get_contents('php://input'), TRUE);
@@ -20,12 +20,12 @@ switch ($message)
         ];
         break;
 
-    case 'погода':
-        $method = 'sendMessage';
-        $send_data = [
-            'text'   => getTemp()
-        ];
-        break;
+//    case 'погода':
+//        $method = 'sendMessage';
+//        $send_data = [
+//            'text'   => getTemp()
+//        ];
+//        break;
 
     case 'кнопки':
         $method = 'sendMessage';
@@ -57,4 +57,3 @@ switch ($message)
 $send_data['chat_id'] = $data['chat']['id'];
 $res = sendTelegram::sendTelegramMessage($method, $send_data);
 // setWebhook
-// https://api.telegram.org/bot6246160973:AAEzhH3DfMBqieE6bmXkSk3vmC02QS7-CWc/setWebhook?url=https://lazyaxeclan.site/modules/telegram/turtleBot.php
