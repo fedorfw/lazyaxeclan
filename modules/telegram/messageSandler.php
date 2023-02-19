@@ -1,7 +1,5 @@
 <?php
 require_once "sendTelegram.php";
-use telegram\sendTelegram;
-
 
 $method = 'sendMessage';
 
@@ -10,7 +8,7 @@ $send_data = [
 ];
 $send_data['chat_id'] = '@lazyAxeClan';
 
-$res = sendTelegram::sendTelegramMessage($method, $send_data);
+$res = sendTelegramMessage($method, $send_data);
 
 
 
