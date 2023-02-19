@@ -1,4 +1,5 @@
 <?php
+use telegram\sendTelegram;
 require_once('weatherApi.php');
 require_once ('../modules/telegram/sendTelegram.php');
 
