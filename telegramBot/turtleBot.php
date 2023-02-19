@@ -1,6 +1,8 @@
 <?php
 require_once('../botCases/weatherApi.php');
 
+use telegramBot\sendTelegram;
+
 # Принимаем запрос
 $data = json_decode(file_get_contents('php://input'), TRUE);
 //file_put_contents('file.txt', '$data: '.print_r($data, 1)."\n", FILE_APPEND);
@@ -64,21 +66,22 @@ switch ($message)
 # Добавляем данные пользователя
 //$send_data['chat_id'] = $data['chat']['id'];
 $send_data['chat_id'] = '@lazyAxeClan';
-$res = sendTelegram($method, $send_data);
+$res = sendTelegram::sendTelegramMessage($method, $send_data);
+//$res = sendTelegram($method, $send_data);
 
-function sendTelegram($method, $data, $headers = [])
-{
-    $curl = curl_init();
-    curl_setopt_array($curl, [
-        CURLOPT_POST => 1,
-        CURLOPT_HEADER => 0,
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => 'https://api.telegram.org/bot' . TOKEN . '/' . $method,
-        CURLOPT_POSTFIELDS => json_encode($data),
-        CURLOPT_HTTPHEADER => array_merge(array("Content-Type: application/json"), $headers)
-    ]);
-
-    $result = curl_exec($curl);
-    curl_close($curl);
-    return (json_decode($result, 1) ? json_decode($result, 1) : $result);
-}
+//function sendTelegram($method, $data, $headers = [])
+//{
+//    $curl = curl_init();
+//    curl_setopt_array($curl, [
+//        CURLOPT_POST => 1,
+//        CURLOPT_HEADER => 0,
+//        CURLOPT_RETURNTRANSFER => 1,
+//        CURLOPT_URL => 'https://api.telegram.org/bot' . TOKEN . '/' . $method,
+//        CURLOPT_POSTFIELDS => json_encode($data),
+//        CURLOPT_HTTPHEADER => array_merge(array("Content-Type: application/json"), $headers)
+//    ]);
+//
+//    $result = curl_exec($curl);
+//    curl_close($curl);
+//    return (json_decode($result, 1) ? json_decode($result, 1) : $result);
+//}
