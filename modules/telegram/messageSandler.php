@@ -1,6 +1,7 @@
 <?php
-
+require_once "sendTelegram.php";
 use telegram\sendTelegram;
+
 
 $method = 'sendMessage';
 
