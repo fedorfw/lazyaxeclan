@@ -6,8 +6,7 @@ use Webmozart\Assert\Assert;
 $method = 'sendMessage';
 
 $text = $_POST['telegramMessage'];
-Assert::NotNull($text, 'нельзя отправить пустое сообщение');
-
+Assert::notNull($text, 'нельзя отправить пустое сообщение');
 $send_data = [
 'text'   => $text
 ];
