@@ -3,7 +3,7 @@
 use telegram\sendTelegram;
 
 require_once('weatherApi.php');
-require_once ('../modules/telegram/sendTelegram.php');
+//require_once ('../modules/telegram/sendTelegram.php');
 
 $data = json_decode(file_get_contents('php://input'), TRUE);
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
@@ -19,12 +19,12 @@ switch ($message)
         ];
         break;
 
-//    case 'погода':
-//        $method = 'sendMessage';
-//        $send_data = [
-//            'text'   => getTemp()
-//        ];
-//        break;
+    case 'погода':
+        $method = 'sendMessage';
+        $send_data = [
+            'text'   => getTemp()
+        ];
+        break;
 
     case 'кнопки':
         $method = 'sendMessage';
@@ -56,15 +56,19 @@ switch ($message)
 $send_data['chat_id'] = $data['chat']['id'];
 $res = sendTelegram::sendTelegramMessage($method, $send_data);
 // setWebhook
-// https://api.telegram.org/bot6246160973:AAEzhH3DfMBqieE6bmXkSk3vmC02QS7-CWc/setWebhook?url=https://lazyaxeclan.site/botCases/turtleBot.php
+// https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://lazyaxeclan.site/botCases/turtleBot.php
 ?>
 <!DOCTYPE html>
-<html lang="ru" class="h-100">
+<html lang="ru">
 <head>
     <title>TurtleBot</title>
 </head>
-<body>
-<h1>Turtle Bot</h1>
-</body>
+    <body>
+        <h1>Turtle Bot</h1>
+        <br>
+        <hr>
+        <h3>Все нормально, все хорошо, работаем</h3>
+        <hr>
+    </body>
 </html>
 
