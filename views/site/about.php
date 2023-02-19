@@ -1,11 +1,11 @@
 <?php
+require_once "../telegramBot/turtleBot.php";
 
 /** @var yii\web\View $this */
 
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use yii\helpers\Html;
-include_once __DIR__."../../telegramBot/turtleBot.php";
 
 //class HandleUser
 //{
