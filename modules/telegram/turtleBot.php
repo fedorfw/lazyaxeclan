@@ -9,6 +9,7 @@ $data = json_decode(file_get_contents('php://input'), TRUE);
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
 $message = mb_strtolower(($data['text'] ? $data['text'] : $data['data']),'utf-8');
 
+echo 'LazyAxeClanTelegramBot';
 
 # Обрабатываем сообщение
 switch ($message)
@@ -57,3 +58,4 @@ switch ($message)
 $send_data['chat_id'] = $data['chat']['id'];
 $res = sendTelegram::sendTelegramMessage($method, $send_data);
 // setWebhook
+//
