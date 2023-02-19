@@ -6,7 +6,7 @@ class sendTelegram
 {
     public function sendTelegramMessage($method, $data, $headers = [])
     {
-        $token = require __DIR__."../../config/telegramToken.php";
+        $token = require __DIR__."/../../config/telegramToken.php";
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_POST => 1,
