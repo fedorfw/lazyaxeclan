@@ -19,8 +19,6 @@ class UserController extends BaseApiController
 
     public function actionGetUser()
     {
-        var_dump('ss');
-        die;
         $email = "fedorfw@mail.ru";
 
         try {
