@@ -5,6 +5,7 @@ namespace users\app\controllers;
 use app\modules\common\components\BaseApiController;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 use users\app\transformers\UserTransformer;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use users\Infrastructure\Repositories\UserRepository;
@@ -15,6 +16,7 @@ use users\Domain\UseCases\GetList;
 
 class UserController extends BaseApiController
 {
+
     public function actionTest()
     {
         return $this->apiSuccess();
@@ -23,18 +25,30 @@ class UserController extends BaseApiController
     public function actionGetUser()
     {
         $email = "fedorfw@mail.ru";
-        $command = new GetList\Command();
-        $command->hi = $email;
+//        $command = new GetList\Command();
+//        $command->hi = $email;
 
-
-        try {
-            Yii::$container->get(GetList\Handler::class)->handler($command);
-        } catch (\Exception $e) {
-            return $this->apiError([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ]);
+        $user = Yii::$container->get(UserRepository::class)->findUserByEmail($email);
+        if (!$user) {
+            return $this->apiError();
         }
-        return $this->apiSuccess();
+
+        $item = new Item(
+            $user,
+            new UserTransformer()
+        );
+        return (new Manager())
+            ->createData($item)
+            ->toArray();
+
+//        try {
+//            Yii::$container->get(GetList\Handler::class)->handler($command);
+//        } catch (\Exception $e) {
+//            return $this->apiError([
+//                'status' => 'error',
+//                'message' => $e->getMessage()
+//            ]);
+//        }
+//        return $this->apiSuccess();
     }
 }

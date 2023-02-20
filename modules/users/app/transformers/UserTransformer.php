@@ -12,7 +12,7 @@ class UserTransformer extends TransformerAbstract
         return [
             'id' => $user->getId(),
             'email' => $user->getEmail(),
-            'last_name' => $user->getLastName(),
+            'name' => $user->getName(),
         ];
     }
 
