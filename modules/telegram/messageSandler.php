@@ -1,4 +1,7 @@
 <?php
+
+namespace telegram;
+
 require_once __DIR__.'/sendTelegram.php';
 use telegram\sendTelegram;
 
