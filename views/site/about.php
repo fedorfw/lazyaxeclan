@@ -28,7 +28,7 @@ $js = <<<JS
     {
         $.ajax({
             method: 'get',
-            url: '/users/user/get-user',
+            url: '/web/users/user/get-user',
             success: function(data){
                 console.log(data.text);    /* выведет "Текст" */
                 console.log(data.error);   /* выведет "Ошибка" */
