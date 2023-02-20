@@ -34,6 +34,3 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
-
-#index.php is dev
-/web/index.php

@@ -7,7 +7,6 @@
 use telegram\sendTelegram;
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
-use Webmozart\Assert\Assert;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
@@ -43,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo $test2;
         echo "<br>";
         echo "<hr>";
-        Assert::notNull($varNul, 'она же пустая');
+        \Webmozart\Assert\Assert::notNull($varNul, "пустая же");
 //        if (!$varNul) {
 //            $varNul = "была пустая";
 //        }
