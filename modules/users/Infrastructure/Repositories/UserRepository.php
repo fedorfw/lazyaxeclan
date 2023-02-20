@@ -17,38 +17,38 @@ class UserRepository implements UserRepositoryInterface
 
     public function testGet($hi): string
     {
-        if ($hi == "hi") {
-            return "ответ хай";
+        $res = 'нет ответа';
+        if ($hi == 'hi') {
+            $res = 'есть ответ ' . $hi;
         }
-        return "нет ответа";
+        return $res;
     }
-
-    public function findUser(int $userId):? User
-    {
-        return $this->entityManager->getRepository(User::class)
-            ->find($userId);
-    }
-
+//
+//    public function findUser(int $userId):? User
+//    {
+//        return $this->entityManager->getRepository(User::class)
+//            ->find($userId);
+//    }
+//
     public function findUserByEmail(string $email):? User
     {
-        var_dump('x');
-        die;
+
         return $this->entityManager->getRepository(User::class)
             ->findOneBy([
                 'email' => $email
             ]);
     }
-
-    public function save(User $user)
-    {
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
-    }
-
-    public function delete(User $user)
-    {
-        $this->entityManager->remove($user);
-        $this->entityManager->flush();
-    }
+//
+//    public function save(User $user)
+//    {
+//        $this->entityManager->persist($user);
+//        $this->entityManager->flush();
+//    }
+//
+//    public function delete(User $user)
+//    {
+//        $this->entityManager->remove($user);
+//        $this->entityManager->flush();
+//    }
 
 }

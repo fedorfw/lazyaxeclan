@@ -10,7 +10,6 @@
 
         <field name="email" type="string" column="email" />
         <field name="name" type="string" column="name" />
-        <field name="lastName" type="string" column="lastname" />
 
     </entity>
 </doctrine-mapping>

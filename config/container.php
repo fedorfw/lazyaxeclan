@@ -13,6 +13,7 @@ return [
 
         $driver = new XmlDriver(new SymfonyFileLocator([
             __DIR__ . '/../modules/users/Infrastructure/Mappings' => 'users\Domain\Entities',
+
         ], 'Mapping.xml'));
         $config->setMetadataDriverImpl($driver);
         $config->setProxyDir(__DIR__ . '/../runtime/proxies');

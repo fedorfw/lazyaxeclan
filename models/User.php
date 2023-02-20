@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use users\Domain\Interfaces\UserRepositoryInterface;
+use Yii;
+
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
@@ -48,6 +51,27 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
         }
 
         return null;
+    }
+
+    public static function findByEmail($email)
+    {
+        $userDB = Yii::$container->get(UserRepositoryInterface::class)->findUserByEmail($email);
+        if (!$userDB) {
+            return null;
+        }
+
+        if (!$userDB->getStatus()->isActive()) {
+            return null;
+        }
+
+        return new static([
+            'id' => $userDB->getId(),
+            'email' => $userDB->getEmail(),
+            'password' => $userDB->getPass(),
+            // TODO: keys
+            'authKey' => 'test100key',
+            'accessToken' => '100-token',
+        ]);
     }
 
     /**

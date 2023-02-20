@@ -7,8 +7,11 @@ use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use users\app\transformers\UserTransformer;
 use users\Domain\Interfaces\UserRepositoryInterface;
+use users\Infrastructure\Repositories\UserRepository;
 use Yii;
+use yii\di\Container;
 use yii\web\ForbiddenHttpException;
+use users\Domain\UseCases\GetList;
 
 class UserController extends BaseApiController
 {
@@ -20,20 +23,18 @@ class UserController extends BaseApiController
     public function actionGetUser()
     {
         $email = "fedorfw@mail.ru";
+        $command = new GetList\Command();
+        $command->hi = $email;
+
 
         try {
-            $users = Yii::$container->get(UserRepositoryInterface::class)
-                ->findUserByEmail($email);
+            Yii::$container->get(GetList\Handler::class)->handler($command);
         } catch (\Exception $e) {
-            return $this->apiError();
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
-
-        $collection = new Collection(
-            $users,
-            new UserTransformer()
-        );
-        return (new Manager())
-            ->createData($collection)
-            ->toArray();
+        return $this->apiSuccess();
     }
 }

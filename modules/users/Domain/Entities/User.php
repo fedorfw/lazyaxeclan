@@ -7,7 +7,6 @@ class User
     private $id;
     private $email;
     private $name;
-    private $lastName;
 
     /**
      * @return mixed
@@ -47,21 +46,5 @@ class User
     public function setName($name): void
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastname()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param mixed $lastName
-     */
-    public function setLastname($lastName): void
-    {
-        $this->lastName = $lastName;
     }
 }
