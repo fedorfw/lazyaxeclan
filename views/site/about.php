@@ -34,24 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         This is the About page. You may modify the following file to customize its content:
     </p>
-    <div>
-        <?=
-        $varNul = null;
-        $test = '';
-        $test2 = $test." я тест2";
-        echo $test2;
-        echo "<br>";
-        echo "<hr>";
-        \Webmozart\Assert\Assert::notNull($varNul, "пустая же");
-//        if (!$varNul) {
-//            $varNul = "была пустая";
-//        }
-        echo $varNul;
-        echo "<hr>";
 
-
-        ?>
-    </div>
     <form id="telegramMessage">
         <label>Написать в телеграм
             <br>
