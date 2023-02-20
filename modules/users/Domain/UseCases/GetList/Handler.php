@@ -15,7 +15,7 @@ class Handler
        $this->userRepository = $userRepository;
    }
 
-    public function handler(Command $command): string
+    public function handler(Command $command): User
     {
         return  $this->userRepository->findUserByEmail($command->hi);
     }
