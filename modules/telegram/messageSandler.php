@@ -8,11 +8,11 @@ use telegram\sendTelegram;
 $method = 'sendMessage';
 
 $text = $_POST['telegramMessage'];
-//if (!$text) {
-//    throw new DomainException("не работает");
-//}
+if (!$text) {
+    throw new DomainException("не работает");
+}
 
-\Webmozart\Assert\Assert::notNull($text, 'низя так');
+//\Webmozart\Assert\Assert::notNull($text, 'низя так');
 $send_data = [
 'text'   => $text
 ];
