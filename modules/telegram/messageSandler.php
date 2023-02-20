@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__.'/sendTelegram.php';
 use telegram\sendTelegram;
-use Webmozart\Assert\Assert;
 
 $method = 'sendMessage';
 
@@ -9,8 +8,8 @@ $text = $_POST['telegramMessage'];
 //if (!$text) {
 //    throw new DomainException("не работает");
 //}
-Assert::notNull($text, 'нельзя отправить пустое сообщение');
 
+\Webmozart\Assert\Assert::notNull($text, 'низя так');
 $send_data = [
 'text'   => $text
 ];
