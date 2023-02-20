@@ -46,10 +46,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            ],
+                       ],
         ],
     ],
-
     'modules' => [
         'users' => [
             'class' => \users\app\UsersModule::class,

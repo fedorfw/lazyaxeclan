@@ -4,6 +4,7 @@
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var app\models\LoginForm $model */
 
+use app\models\Users;
 use telegram\sendTelegram;
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
@@ -22,10 +23,23 @@ $js = <<<JS
             type: 'POST'
         })
     });
+
+    $('#btnGet').on('click', function ()
+    {
+        $.ajax({
+            method: 'get',
+            url: '/users/user/get-user',
+            success: function(data){
+                console.log(data.text);    /* выведет "Текст" */
+                console.log(data.error);   /* выведет "Ошибка" */
+    }
+        });
+    });
 JS;
 
 $this->registerJs($js);
 
+$users = Users::find()->all();
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -42,6 +56,20 @@ $this->params['breadcrumbs'][] = $this->title;
         </label>
         <input id="btn" type="button" value="Отправить" />
     </form>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <h4>Проверка ajax</h4>
+    <button id="btnGet">Кнопошкаsss</button>
+    <hr>
+    <div>юзерсы</div>
+    <ul>
+        <? foreach ($users as $item) { ?>
+         <li><? $item->name ?></li>
+       <? } ?>
+    </ul>
+
 
 </div>
 
