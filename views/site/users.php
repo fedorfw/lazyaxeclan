@@ -3,7 +3,7 @@
 
 use users\Domain\Interfaces\UserRepositoryInterface;
 
-echo $hostUser = UserRepositoryInterface::testGet();
+echo $hostUser = Yii::$container->get(UserRepositoryInterface::class)->testGet('hi');
 
 
 foreach ($users as $user) {
