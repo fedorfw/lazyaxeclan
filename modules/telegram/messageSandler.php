@@ -3,6 +3,8 @@
 namespace telegram;
 
 require_once __DIR__.'/sendTelegram.php';
+
+use DomainException;
 use telegram\sendTelegram;
 
 $method = 'sendMessage';
