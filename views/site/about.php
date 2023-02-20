@@ -7,6 +7,7 @@
 use telegram\sendTelegram;
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
+use Webmozart\Assert\Assert;
 use yii\bootstrap5\ActiveForm;
 use yii\helpers\Html;
 
@@ -34,7 +35,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         This is the About page. You may modify the following file to customize its content:
     </p>
+    <div>
+        <?=
+        $varNul = null;
+        $test = '';
+        $test2 = $test." я тест2";
+        echo $test2;
+        echo "<br>";
+        echo "<hr>";
+        Assert::notNull($varNul, 'она же пустая');
+//        if (!$varNul) {
+//            $varNul = "была пустая";
+//        }
+        echo $varNul;
+        echo "<hr>";
 
+
+        ?>
+    </div>
     <form id="telegramMessage">
         <label>Написать в телеграм
             <br>
