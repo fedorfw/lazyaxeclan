@@ -6,10 +6,10 @@ use Webmozart\Assert\Assert;
 $method = 'sendMessage';
 
 $text = $_POST['telegramMessage'];
-if (!$text) {
-    throw new DomainException("не работает");
+//if (!$text) {
+//    throw new DomainException("не работает");
 }
-//Assert::notNull($text, 'нельзя отправить пустое сообщение');
+//Assert::notEmpty($text, 'нельзя отправить пустое сообщение');
 
 $send_data = [
 'text'   => $text
