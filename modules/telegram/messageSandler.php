@@ -8,7 +8,7 @@ $method = 'sendMessage';
 $text = $_POST['telegramMessage'];
 //if (!$text) {
 //    throw new DomainException("не работает");
-}
+//}
 //Assert::notEmpty($text, 'нельзя отправить пустое сообщение');
 
 $send_data = [
