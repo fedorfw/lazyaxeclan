@@ -9,15 +9,14 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-            $.ajax({
+          var data =  $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
-                console.log(data);
-                return data ;
+                console.log("1 " + data);
             }
-        });
-            console.log(data);
+          });
+          console.log("2 " + data);
       }
   }
 });
