@@ -9,15 +9,21 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-           this.users = $.ajax({
+          var data = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             dataType: 'json'
           }).done(function (data){
+              console.log(data)
+              console.log(data.status)
               return data;
           });
-         console.log(this.users);
-      }
+           if(data.status === 200)
+            {
+                this.user = data.responseJSON.data;
+                console.log(this.user)
+            }
+           }
   }
 });
 
