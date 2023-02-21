@@ -9,7 +9,7 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-          var data = $.ajax({
+          var test = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             dataType: 'json'
@@ -18,10 +18,10 @@ var app = new Vue({
               console.log(data.status)
               return data;
           });
-           if(data.status === 200)
+           if(test.status === 200)
             {
-                console.log(data);
-                this.user = data.responseJSON.data;
+                console.log(test);
+                this.user = this.data.responseJSON.data;
                 console.log(this.user)
             }
            }
