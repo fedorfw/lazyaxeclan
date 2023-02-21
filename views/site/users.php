@@ -9,16 +9,19 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-          var data =  $.ajax({
+          $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
+            dataType: 'json',
             success: function (data){
                 console.log("1");
                 console.log(data);
             }
+          }).done(function (data){
+              console.log("2");
+                console.log(data);
           });
-          console.log("2");
-          console.log(data);
+         
       }
   }
 });
