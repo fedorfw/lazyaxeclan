@@ -10,7 +10,7 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-          this.user = $.ajax({
+          let response = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
@@ -18,7 +18,7 @@ var app = new Vue({
                 return data ;
             }
         });
-          
+          this.user = response.responseJSON.data
       }
   }
 });
