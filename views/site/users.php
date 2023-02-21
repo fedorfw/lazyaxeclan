@@ -13,10 +13,12 @@ var app = new Vue({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
+                console.log("1");
                 console.log(data);
             }
           });
-          console.log(data);
+          console.log("2");
+          console.log(data.readyState);
       }
   }
 });
