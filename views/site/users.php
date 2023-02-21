@@ -14,7 +14,7 @@ var app = new Vue({
             url: '/web/users/user/get-user',
             success: function (data){
                 console.log(data);
-                return  this.user = data.data;
+                this.user = data.data;
             }
         });
       }
@@ -55,7 +55,7 @@ echo 'xx';
     <button id="btnGetTo">Кнопошкаsss</button>
     <button @click="setFfw">кнопка ffw</button>
     <div v-if="user">
-        {{ user.name }}
+        {{ user }}
     </div>
 
 
