@@ -5,7 +5,7 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: Object,
+    user: null,
     res: null
   },
   methods: {
@@ -55,14 +55,14 @@ echo 'xx';
     <hr>
     <button id="btnGetTo">Кнопошкаsss</button>
     <button @click="setFfw">кнопка ffw</button>
-<!--    <div v-if="user">-->
+    <div v-if="user">
         {{ user }}
     <br>
         {{ user.responseJSON }}
     <br>
     {{ user.responseJSON.name }}
     <br>
-<!--    </div>-->
+    </div>
 
 
 
