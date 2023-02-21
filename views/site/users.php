@@ -57,6 +57,11 @@ echo 'xx';
     <button @click="setFfw">кнопка ffw</button>
 <!--    <div v-if="user">-->
         {{ user }}
+    <br>
+        {{ user.responseJSON }}
+    <br>
+    {{ user.responseJSON.name }}
+    <br>
 <!--    </div>-->
 
 
