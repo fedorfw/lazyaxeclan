@@ -10,15 +10,15 @@ var app = new Vue({
   },
   methods: {
       setFfw(){
-          $.ajax({
+          this.user = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
                 console.log(data);
-                return this.res = data.data;
+                return data.data;
             }
         });
-          this.user = res
+          
       }
   }
 });
