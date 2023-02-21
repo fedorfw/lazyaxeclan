@@ -13,8 +13,8 @@ var app = new Vue({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
-                this.user = data.data;
                 console.log(data);
+                return  this.user = data.data;
             }
         });
       }
