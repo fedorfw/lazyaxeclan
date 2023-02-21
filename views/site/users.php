@@ -5,26 +5,24 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: null
+    user: null,
+    test: null
   },
   methods: {
       setFfw(){
-          var test = $.ajax({
+          this.test = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             dataType: 'json'
-          }).done(function (data){
-              console.log(data)
-              console.log(data.status)
-              return data;
           });
-           if(test.status === 200)
-            {
-                console.log(test);
-                this.user = this.data.responseJSON.data;
-                console.log(this.user)
-            }
-           }
+      }
+  },
+  watch: {
+      dataWatch (test) {
+          if (test) {
+              this.user = test;
+          }
+      }
   }
 });
 
