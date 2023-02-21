@@ -5,19 +5,19 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: null,
-    res: null
+    user: null
   },
   methods: {
       setFfw(){
-          let data = $.ajax({
+          var text 
+            $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
-                return data ;
+                this.text = data ;
             }
         });
-          console.log(data.responseJSON.data);
+          console.log(text);
       }
   }
 });
