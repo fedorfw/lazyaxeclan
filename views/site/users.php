@@ -20,6 +20,7 @@ var app = new Vue({
           });
            if(data.status === 200)
             {
+                console.log(data);
                 this.user = data.responseJSON.data;
                 console.log(this.user)
             }
