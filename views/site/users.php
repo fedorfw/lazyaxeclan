@@ -11,13 +11,9 @@ var app = new Vue({
       setFfw(){
           $.ajax({
             method: 'get',
-            url: '/web/users/user/get-user',
-            success: function(data){
-                console.log(data.text);    /* выведет "Текст" */
-                console.log(data.error);   /* выведет "Ошибка" */
-            }
+            url: '/web/users/user/get-user'
         });
-           this.user = data
+        console.log(data);
       }
   }
 });
