@@ -18,7 +18,7 @@ var app = new Vue({
             }
           });
           console.log("2");
-          console.log(data.readyState);
+          console.log(data);
       }
   }
 });
