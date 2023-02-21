@@ -5,9 +5,7 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: {
-        name: 'вася'
-    }
+    user: Object
   },
   methods: {
       setFfw(){
