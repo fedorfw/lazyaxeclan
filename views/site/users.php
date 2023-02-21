@@ -5,7 +5,9 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: null
+    user: {
+        name: 'вася'
+    }
   },
   methods: {
       setFfw(){
@@ -55,7 +57,7 @@ echo 'xx';
     <button id="btnGetTo">Кнопошкаsss</button>
     <button @click="setFfw">кнопка ffw</button>
     <div v-if="user">
-        {{ user }}
+        {{ user.name }}
     </div>
 
 
