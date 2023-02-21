@@ -5,7 +5,8 @@ var app = new Vue({
   data: {
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
-    user: Object
+    user: Object,
+    res: null
   },
   methods: {
       setFfw(){
@@ -14,9 +15,10 @@ var app = new Vue({
             url: '/web/users/user/get-user',
             success: function (data){
                 console.log(data);
-                this.user = data.data;
+                return this.res = data.data;
             }
         });
+          this.user = res
       }
   }
 });
