@@ -20,6 +20,7 @@ var app = new Vue({
           }).done(function (data){
               console.log("2");
                 console.log(data);
+                this.user = data;
           });
          
       }
