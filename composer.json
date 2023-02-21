@@ -26,7 +26,8 @@
         "phpoffice/phpspreadsheet": "^1.25",
         "yiisoft/yii2-redis": "^2.0",
         "ext-pdo": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "prawee/yii2-vuejs": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

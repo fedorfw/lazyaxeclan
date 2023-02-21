@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use prawee\vuejs\VueJsAsset;
 
 class SiteController extends Controller
 {
@@ -124,14 +125,13 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+//        VueJsAsset::register($this->view);
         return $this->render('about');
     }
 
     public function actionUsers()
     {
-       $users = Users::find()->all();
-        return $this->render('users', [
-            'users' => $users,
-        ]);
+//       $users = Users::find()->all();
+        return $this->render('users');
     }
 }

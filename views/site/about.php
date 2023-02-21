@@ -38,8 +38,8 @@ $js = <<<JS
 JS;
 
 $this->registerJs($js);
-
-$users = Users::find()->all();
+//VueJsAsset::register($this);
+//$users = Users::find()->all();
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -64,12 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <button id="btnGet">Кнопошкаsss</button>
     <hr>
     <div>юзерсы</div>
-    <ul>
-        <? foreach ($users as $item) { ?>
-         <li><? $item->name ?></li>
-       <? } ?>
-    </ul>
-
 
 </div>
 

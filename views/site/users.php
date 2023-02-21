@@ -1,33 +1,67 @@
 <?php
+$js = <<<JS
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Привет, Vue!1111',
+    numbers: [1,3,4,6],
+    user: null
+  },
+  methods: {
+      setFfw(){
+          $.ajax({
+            method: 'get',
+            url: '/web/users/user/get-user',
+            success: function(data){
+                console.log(data.text);    /* выведет "Текст" */
+                console.log(data.error);   /* выведет "Ошибка" */
+            }
+        });
+           this.user = data
+      }
+  }
+});
 
+$('#btnGetTo').on('click', function ()
+    {
+        var test = 'я кнопка тест'
+        alert(test);
+        // $.ajax({
+        //     method: 'get',
+        //     url: '/web/users/user/get-user',
+        //     success: function(data){
+        //         console.log(data.text);    /* выведет "Текст" */
+        //         console.log(data.error);   /* выведет "Ошибка" */
+        //     }
+        // });
+    });
 
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
-use users\app\transformers\UserTransformer;
-use users\Domain\Interfaces\UserRepositoryInterface;
-use Yii;
-use app\modules\common\components\BaseApiController;
+JS;
 
-try {
-    $users = Yii::$container->get(UserRepositoryInterface::class)
-        ->testGet('hi');
-} catch (\Exception $e) {
-    return $this->apiError();
-}
+$this->registerJs($js);
 
-$collection = new Collection(
-    $users,
-    new UserTransformer()
-);
-return (new Manager())
-    ->createData($collection)
-    ->toArray();
-
-
-
-foreach ($users as $user) {
-    echo $user->name;
-}
+echo 'xx';
 ?>
+<script type="module" src="newComponent.js"> </script>
+чтото новое
+<div id="app">
+    {{ message }}
+    {{ test }}
+    <div v-for="item in numbers" >
+        <p v-if="item != 3"> {{ item }} </p>
+    </div>
+
+    <input v-model="message" />
+    <hr>
+    <button id="btnGetTo">Кнопошкаsss</button>
+    <button @click="setFfw">кнопка ffw</button>
+    <div v-if="user">
+        {{ user.name }}
+    </div>
+
+
+
+</div>
+
 
 
