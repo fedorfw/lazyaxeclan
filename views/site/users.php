@@ -14,6 +14,7 @@ var app = new Vue({
             method: 'get',
             url: '/web/users/user/get-user',
             success: function (data){
+                console.log(data);
                 this.text = data ;
             }
         });
