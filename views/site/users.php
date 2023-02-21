@@ -47,7 +47,6 @@ echo 'xx';
 чтото новое
 <div id="app">
     {{ message }}
-    {{ test }}
     <div v-for="item in numbers" >
         <p v-if="item != 3"> {{ item }} </p>
     </div>
@@ -56,9 +55,9 @@ echo 'xx';
     <hr>
     <button id="btnGetTo">Кнопошкаsss</button>
     <button @click="setFfw">кнопка ffw</button>
-    <div v-if="user">
-        {{ user.name }}
-    </div>
+<!--    <div v-if="user">-->
+        {{ user }}
+<!--    </div>-->
 
 
 
