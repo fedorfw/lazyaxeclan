@@ -56,11 +56,11 @@ echo 'xx';
     <button id="btnGetTo">Кнопошкаsss</button>
     <button @click="setFfw">кнопка ffw</button>
     <div v-if="user">
-        {{ user }}
+       user - {{ user }}
     <br>
-        {{ user.responseJSON }}
+        user.responseJSON -  {{ user.responseJSON }}
     <br>
-    {{ user.responseJSON.name }}
+        user.responseJSON.data.name - {{ user.responseJSON.data.name }}
     <br>
     </div>
 
