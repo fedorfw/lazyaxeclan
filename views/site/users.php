@@ -16,7 +16,7 @@ var app = new Vue({
           }).done(function (data){
               return data;
           });
-         
+         console.log(this.users);
       }
   }
 });
