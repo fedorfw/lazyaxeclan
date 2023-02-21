@@ -13,7 +13,7 @@ var app = new Vue({
             method: 'get',
             url: '/web/users/user/get-user'
         });
-        console.log(data);
+        console.log(res);
       }
   }
 });
