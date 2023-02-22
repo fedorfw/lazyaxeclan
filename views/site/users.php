@@ -23,7 +23,7 @@ var app = new Vue({
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          this.message = this.testData.responseJSON ;
+          this.message = this.testData ;
       }
   },
   computed: {
