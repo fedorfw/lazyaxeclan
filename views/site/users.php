@@ -21,14 +21,14 @@ var app = new Vue({
       },
       brbrbr() {
           console.log('wrooom');
-          this.message = this.testData.responseJSON.data;
-          this.user = this.testData.responseJSON.data;
+          this.message = this.testData.responseJSON;
+          this.user = this.testData.responseJSON;
       }
       
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          setTimeout(this.brbrbr, 4000)
+          setTimeout(this.brbrbr, 1000)
           
           this.user = this.testData ;
       }
