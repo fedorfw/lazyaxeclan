@@ -21,7 +21,7 @@ var app = new Vue({
       },
       brbrbr() {
           console.log('wrooom');
-          this.message = this.testData;
+          this.message = this.testData.responseJSON;
       }
       
   },
