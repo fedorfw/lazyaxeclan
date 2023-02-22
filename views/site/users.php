@@ -6,23 +6,25 @@ var app = new Vue({
     message: 'Привет, Vue!1111',
     numbers: [1,3,4,6],
     user: null,
-    test: null
+    testData: null
   },
   methods: {
       setFfw(){
-          this.test = $.ajax({
+          this.testData = $.ajax({
             method: 'get',
             url: '/web/users/user/get-user',
             dataType: 'json'
           }).done(function (data){
               console.log(data);
           });
+          console.log(this.testData)
       }
+      
   },
-  watch: {
-      dataWatch (test) {
-          if (test) {
-              this.user = test;
+  computed: {
+      testComputed() {
+          if (this.testData)  {
+              alert(this.testData)
           }
       }
   }
