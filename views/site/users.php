@@ -28,7 +28,7 @@ var app = new Vue({
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          setTimeout(this.brbrbr, 1000)
+          setTimeout(this.brbrbr, 4000)
           
           this.user = this.testData ;
       }
