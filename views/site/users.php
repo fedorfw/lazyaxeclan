@@ -23,7 +23,7 @@ var app = new Vue({
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          this.message = this.testData.data ;
+          this.message = this.testData.responseJSON ;
           this.user = this.testData ;
       }
   },
