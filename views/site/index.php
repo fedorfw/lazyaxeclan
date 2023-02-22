@@ -55,6 +55,18 @@ var index = new Vue({
             type: 'POST'
         })
     });
+    
+    $('#btnGet').on('click', function ()
+    {
+        $.ajax({
+            method: 'get',
+            url: '/web/users/user/get-user',
+            success: function(data){
+                console.log(data.text);    /* выведет "Текст" */
+                console.log(data.error);   /* выведет "Ошибка" */
+    }
+        });
+    })
 JS;
 
 $this->registerJs($js);
@@ -72,7 +84,8 @@ $this->registerJs($js);
     </form>
     <br>
 {{ message }}
-    <button @click="setFfw" >Кнопошкаsss</button>
+    <button @click="setFfw" >get list</button>
+    <button id="btnGet">get ffw</button>
     <div v-if="user">
         <br>
         <br>
