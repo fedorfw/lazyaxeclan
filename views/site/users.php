@@ -17,9 +17,14 @@ var app = new Vue({
           }).done(function (data){
               console.log(data);
           });
-          console.log(this.testData.data.responseJSON)
+          console.log(this.testData)
       }
       
+  },
+  watch: {
+      testData: function (newTestData, oldTestData) {
+          this.message = this.testData ;
+      }
   },
   computed: {
       testComputed() {
