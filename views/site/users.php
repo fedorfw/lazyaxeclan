@@ -18,12 +18,16 @@ var app = new Vue({
               console.log(data);
           });
           console.log(this.testData)
+      },
+      brbrbr() {
+          console.log('wrooom');
+          this.message = this.testData;
       }
       
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          setTimeout(this.message = this.testData.responseJSON, 5000)
+          setTimeout(this.brbrbr(), 5000)
           
           this.user = this.testData ;
       }
