@@ -25,8 +25,6 @@ class UserController extends BaseApiController
     public function actionGetUser()
     {
         $email = "fedorfw@mail.ru";
-//        $command = new GetList\Command();
-//        $command->hi = $email;
 
         $user = Yii::$container->get(UserRepository::class)->findUserByEmail($email);
         if (!$user) {
@@ -41,14 +39,23 @@ class UserController extends BaseApiController
             ->createData($item)
             ->toArray();
 
-//        try {
-//            Yii::$container->get(GetList\Handler::class)->handler($command);
-//        } catch (\Exception $e) {
-//            return $this->apiError([
-//                'status' => 'error',
-//                'message' => $e->getMessage()
-//            ]);
-//        }
-//        return $this->apiSuccess();
+    }
+
+    public function actionList()
+    {
+        try {
+            $users = Yii::$container->get(UserRepositoryInterface::class)
+                ->getList();
+        } catch (\Exception $e) {
+            return $this->apiError();
+        }
+
+        $collection = new Collection(
+            $users,
+            new UserTransformer()
+        );
+        return (new Manager())
+            ->createData($collection)
+            ->toArray();
     }
 }

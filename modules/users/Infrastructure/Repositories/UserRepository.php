@@ -23,13 +23,13 @@ class UserRepository implements UserRepositoryInterface
         }
         return $res;
     }
-//
-//    public function findUser(int $userId):? User
-//    {
-//        return $this->entityManager->getRepository(User::class)
-//            ->find($userId);
-//    }
-//
+
+    public function findUser(int $userId):? User
+    {
+        return $this->entityManager->getRepository(User::class)
+            ->find($userId);
+    }
+
     public function findUserByEmail(string $email):? User
     {
 
@@ -38,17 +38,23 @@ class UserRepository implements UserRepositoryInterface
                 'email' => $email
             ]);
     }
-//
-//    public function save(User $user)
-//    {
-//        $this->entityManager->persist($user);
-//        $this->entityManager->flush();
-//    }
-//
-//    public function delete(User $user)
-//    {
-//        $this->entityManager->remove($user);
-//        $this->entityManager->flush();
-//    }
+
+    public function save(User $user)
+    {
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
+    public function delete(User $user)
+    {
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+    }
+
+    public function getlist()
+    {
+        return $this->entityManager->getRepository(User::class)
+            ->findAll();
+    }
 
 }
