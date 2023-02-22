@@ -23,7 +23,8 @@ var app = new Vue({
   },
   watch: {
       testData: function (newTestData, oldTestData) {
-          this.message = this.testData.responseJSON ;
+          setTimeout(this.message = this.testData.responseJSON, 5000)
+          
           this.user = this.testData ;
       }
   },
