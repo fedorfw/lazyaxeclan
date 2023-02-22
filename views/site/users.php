@@ -17,7 +17,7 @@ var app = new Vue({
           }).done(function (data){
               console.log(data);
           });
-          console.log(this.testData.responseJSON)
+          console.log(this.testData.data.responseJSON)
       }
       
   },
