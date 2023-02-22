@@ -25,7 +25,7 @@ var index = new Vue({
   methods: {
       setFfw(){
           this.user = $.getJSON({
-            url: 'web/users/user/list'
+            url: '/users/user/list'
           }).done(function (data){
               console.log(data);
           });
