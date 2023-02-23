@@ -1,6 +1,6 @@
 <?php
 
-namespace telegram\app;
+namespace telegrams\app;
 
 use yii\base\Module;
 

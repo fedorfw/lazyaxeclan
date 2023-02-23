@@ -1,6 +1,6 @@
 <?php
 
-namespace telegram\app\controller;
+namespace telegrams\app\controllers;
 
 use app\modules\common\components\BaseApiController;
 

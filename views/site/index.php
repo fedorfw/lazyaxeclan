@@ -26,7 +26,7 @@ var index = new Vue({
       },
       sendMessageToTelegram() {
             $.post({
-                url: '/web/telegram/telegram/test',
+                url: '/web/telegrams/telegram/test',
                 data: {telegramMessage: this.messageTelegram}
             });
             this.messageTelegram = '' 

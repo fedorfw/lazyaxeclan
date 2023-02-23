@@ -57,7 +57,7 @@ $config = [
             'class' => \users\app\UsersModule::class,
         ],
         'telegram' => [
-            'class' => \telegram\app\TelegramModule::class
+            'class' => \telegrams\app\TelegramModule::class
         ],
     ],
     'params' => $params,

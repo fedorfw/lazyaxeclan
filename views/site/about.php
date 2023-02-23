@@ -5,7 +5,7 @@
 /** @var app\models\LoginForm $model */
 
 use app\models\Users;
-use telegram\sendTelegram;
+use telegrams\sendTelegram;
 use users\Domain\Entities\User;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use yii\bootstrap5\ActiveForm;

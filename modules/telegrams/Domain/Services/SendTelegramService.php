@@ -1,6 +1,6 @@
 <?php
 
-namespace telegram\app\Domain\Services;
+namespace telegrams\app\Domain\Services;
 
 class SendTelegramService
 {

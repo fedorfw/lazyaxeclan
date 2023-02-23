@@ -1,11 +1,11 @@
 <?php
 
-namespace telegram;
+namespace telegrams;
 
 //require_once __DIR__ . '/sendTelegram.php';
 
 use DomainException;
-use telegram\app\Domain\Services\SendTelegramService;
+use telegrams\app\Domain\Services\SendTelegramService;
 
 //use telegram\Domain\Service\sendTelegram;
 

@@ -1,6 +1,6 @@
 <?php
 
-use telegram\sendTelegram;
+use telegrams\sendTelegram;
 
 require_once __DIR__.'/weatherApi.php';
 require_once __DIR__ . '/../modules/telegram/sendTelegram.php';
