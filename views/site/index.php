@@ -16,7 +16,7 @@ $js = <<<JS
 var index = new Vue({
   el: '#index',
   data: {
-    message: 'Привет, Vue!1111',
+    messageTelegram: '',
     numbers: [1,3,4,6],
     user: null,
     data: null,
@@ -25,75 +25,58 @@ var index = new Vue({
   methods: {
       setFfw(){
           this.user = $.getJSON({
-            url: '/web/users/user/list'
+            url: '/users/user/list'
           }).done(function (data){
-              console.log(data);
           });
           setTimeout(this.updateUser, 1000)
       },
       updateUser(a) {
           this.testResp = this.user.responseJSON.data
-      }
+      },
+      sendMessageToTelegram() {
+            $.post({
+                url: '/telegram/telegram/send',
+                data: {telegramMessage: this.messageTelegram}
+            });
+            this.messageTelegram = '' 
+        }
   },
   computed: {
-    
+    //
   },
   mounted() {
       this.setFfw();
-  ;
   }
 });
-
-    $('#btn').on('click', function()
-     {
-        let telegram = $('#textTelegram').val()
-        console.log("Попытка отправить сообщение " + telegram);
-        $('#textTelegram').val("");
-        $.ajax({
-            url: '/modules/telegram/messageSandler.php',
-            data: {telegramMessage: telegram},
-            type: 'POST'
-        })
-    });
-    
-    $('#btnGet').on('click', function ()
-    {
-        $.ajax({
-            method: 'get',
-            url: '/web/users/user/get-user',
-            success: function(data){
-                console.log(data.text);    /* выведет "Текст" */
-                console.log(data.error);   /* выведет "Ошибка" */
-    }
-        });
-    })
 JS;
 
 $this->registerJs($js);
 ?>
 <div id="index" class="site-index">
- тут наша страничка
+    <hr>
+    <h4>Отправить сообщение</h4>
+    <input v-model="messageTelegram" value="" />
+    <input @click="sendMessageToTelegram" type="button" value="Отправить" />
     <br>
-    <br>
-    <form id="telegramMessage">
-        <label>Написать в телеграм
-            <br>
-            <input id="textTelegram" name="textTelegram" type="text" value="" />
-        </label>
-        <input id="btn" type="button" value="Отправить" />
-    </form>
-    <br>
-{{ message }}
-    <button @click="setFfw" >get list</button>
-    <button id="btnGet">get ffw</button>
     <div v-if="user">
         <br>
-        <br>
-        <div v-for="item in testResp">
-        <span>почта - {{ item.email }} </span>
-        <span>имя - {{ item.name }} </span>
-        </div>
-        <br>
+        <hr>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="item in testResp">
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }} </td>
+                <td>{{ item.email }}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

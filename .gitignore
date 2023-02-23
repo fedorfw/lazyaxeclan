@@ -32,5 +32,9 @@ phpunit.phar
 tests/_output/*
 tests/_support/_generated
 
+config/db.php
+config/db_doctrine.php
+config/telegramToken.php
+
 #vagrant folder
 /.vagrant
