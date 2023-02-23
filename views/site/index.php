@@ -1,15 +1,6 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var yii\bootstrap5\ActiveForm $form */
-/** @var app\models\LoginForm $model */
-
-use app\models\Users;
-use telegram\sendTelegram;
-use users\Domain\Entities\User;
-use users\Domain\Interfaces\UserRepositoryInterface;
-use yii\bootstrap5\ActiveForm;
-use yii\helpers\Html;
 
 $this->title = 'Клан Ленивого Топора';
 $js = <<<JS
@@ -35,7 +26,7 @@ var index = new Vue({
       },
       sendMessageToTelegram() {
             $.post({
-                url: '/web/telegram/telegram/send',
+                url: '/web/telegram/telegram/test',
                 data: {telegramMessage: this.messageTelegram}
             });
             this.messageTelegram = '' 

@@ -6,8 +6,8 @@ use app\modules\common\components\BaseApiController;
 
 class TelegramController extends BaseApiController
 {
-    public function actionSend()
+    public function actionTest()
     {
-        echo 'x';
+        return $this->apiSuccess();
     }
 }
