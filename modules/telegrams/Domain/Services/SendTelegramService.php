@@ -1,12 +1,12 @@
 <?php
 
-namespace telegrams\app\Domain\Services;
+namespace telegrams\Domain\Services;
 
 class SendTelegramService
 {
-    public function sendMessage($method, $data, $headers = [])
+    public static function sendMessage($method, $data, $headers = [])
     {
-        $token = require __DIR__ . "/../../config/telegramToken.php";
+        $token = require __DIR__ . "/../../../../config/telegramToken.php";
         $curl = curl_init();
         curl_setopt_array($curl, [
             CURLOPT_POST => 1,

@@ -26,7 +26,7 @@ var index = new Vue({
       },
       sendMessageToTelegram() {
             $.post({
-                url: '/web/telegrams/telegram/test',
+                url: '/web/telegrams/telegram/send',
                 data: {telegramMessage: this.messageTelegram}
             });
             this.messageTelegram = '' 
@@ -45,27 +45,27 @@ $this->registerJs($js);
 ?>
 <div id="index" class="site-index">
     <hr>
-    <h4>Отправить сообщение</h4>
+    <h3>Отправить сообщение</h3>
+    <h6>на тестовый телеграм канал @lazyAxeClan</h6>
     <input v-model="messageTelegram" value="" />
     <input @click="sendMessageToTelegram" type="button" value="Отправить" />
     <br>
     <div v-if="user">
-        <br>
         <hr>
         <table class="table table-dark table-striped">
             <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                </tr>
             </thead>
             <tbody>
-            <tr v-for="item in testResp">
-                <th scope="row">{{ item.id }}</th>
-                <td>{{ item.name }} </td>
-                <td>{{ item.email }}</td>
-            </tr>
+                <tr v-for="item in testResp">
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }} </td>
+                    <td>{{ item.email }}</td>
+                </tr>
             </tbody>
         </table>
     </div>
