@@ -107,7 +107,7 @@ $this->registerJs($js);
 <div id="index" class="site-index">
     <hr>
     <div  class="row g-2" >
-        <h3>Отправить сообщение</h3>
+        <h3>Отправить сообщение </h3>
         <label>на тестовый телеграм канал @lazyAxeClan
             <textarea rows="3" v-model="messageTelegram" class="form-control"   style="resize: none"></textarea>
             <button @click.prevent="sendMessageToTelegram" type="submit" class="btn btn-primary mt-1">Отправить</button>
