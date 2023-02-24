@@ -6,6 +6,7 @@ class SendTelegramService
 {
     public static function sendMessage($method, $data, $headers = [])
     {
+        $data['chat_id'] = '@lazyAxeClan';
         $token = require __DIR__ . "/../../../../config/telegramToken.php";
         $curl = curl_init();
         curl_setopt_array($curl, [

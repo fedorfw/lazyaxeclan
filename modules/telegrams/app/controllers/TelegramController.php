@@ -22,7 +22,6 @@ class TelegramController extends BaseApiController
         }
 
         $method = 'sendMessage';
-        $send_data['chat_id'] = '@lazyAxeClan';
         $send_data['text'] = $text;
         SendTelegramService::sendMessage( $method, $send_data);
 

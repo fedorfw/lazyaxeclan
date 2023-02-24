@@ -13,12 +13,45 @@ use Yii;
 use yii\di\Container;
 use yii\web\ForbiddenHttpException;
 use users\Domain\UseCases\GetList;
+use users\Domain\UseCases\Create;
+use users\Domain\UseCases\Update;
 
 class UserController extends BaseApiController
 {
 
     public function actionTest()
     {
+        return $this->apiSuccess();
+    }
+
+    public function actionAddUser()
+    {
+        $userData = $_POST['userData'];
+        if (!$userData) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка параметров'
+            ]);
+        }
+
+        $command = new Create\Command();
+        $command->name= $userData["name"];
+        $command->lastName = $userData["lastName"];
+        $command->email = $userData["email"];
+        $command->phone = $userData["phone"];
+        $command->pass = $userData["pass"];
+
+        $handler = Yii::$container->get(Create\Handler::class);
+
+        try {
+            $handler->handle($command);
+        } catch (\Exception $e) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+
         return $this->apiSuccess();
     }
 
@@ -47,7 +80,7 @@ class UserController extends BaseApiController
             $users = Yii::$container->get(UserRepositoryInterface::class)
                 ->getList();
         } catch (\Exception $e) {
-            return $this->apiError();
+            return $this->apiError($e);
         }
 
         $collection = new Collection(
@@ -57,5 +90,49 @@ class UserController extends BaseApiController
         return (new Manager())
             ->createData($collection)
             ->toArray();
+    }
+
+    public function actionDeleteUser()
+    {
+        $userId = $_GET['userData'];
+        if (!$userId) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка параметров'
+            ]);
+        }
+        $user = Yii::$container->get(UserRepository::class)->findUser($userId);
+
+        Yii::$container->get(UserRepository::class)->delete($user);
+    }
+
+    public function actionUpdateUser()
+    {
+        $userData = $_POST['updatedUserData'];
+        if (!$userData) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка параметров'
+            ]);
+        }
+
+        $command = new Update\Command();
+        $command->id = $userData["id"];
+        $command->name = $userData["name"];
+        $command->email = $userData["email"];
+        $command->phone = $userData["phone"];
+
+        $handler = Yii::$container->get(Update\Handler::class);
+
+        try {
+            $handler->handle($command);
+        } catch (\Exception $e) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+
+        return $this->apiSuccess();
     }
 }

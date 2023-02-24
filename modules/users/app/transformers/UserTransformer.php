@@ -13,6 +13,9 @@ class UserTransformer extends TransformerAbstract
             'id' => $user->getId(),
             'email' => $user->getEmail(),
             'name' => $user->getName(),
+            'phone' => $user->getPhone(),
+            'lastName' => $user->getLastName(),
+
         ];
     }
 

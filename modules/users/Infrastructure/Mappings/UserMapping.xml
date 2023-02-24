@@ -10,6 +10,12 @@
 
         <field name="email" type="string" column="email" />
         <field name="name" type="string" column="name" />
+        <field name="phone" type="string" column="phone" />
+        <field name="lastName" type="string" column="lastname" />
+        <field name="pass" type="string" column="pass" />
+
+        <embedded name="status" class="users\Domain\ValueObjects\UserStatus" use-column-prefix="false" />
+        <embedded name="role" class="users\Domain\ValueObjects\UserRole" use-column-prefix="false" />
 
     </entity>
 </doctrine-mapping>
