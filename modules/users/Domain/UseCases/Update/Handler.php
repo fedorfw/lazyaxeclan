@@ -26,11 +26,6 @@ class Handler
 
         $this->userRepository->save($user);
 
-//        $text = "Был зарегистрирован новый пользователь (". $user->getName() . ").";
-//        $method = 'sendMessage';
-//        $send_data['text'] = $text;
-//        SendTelegramService::sendMessage( $method, $send_data);
-
         return $user;
     }
 

@@ -18,15 +18,9 @@ use users\Domain\UseCases\Update;
 
 class UserController extends BaseApiController
 {
-
-    public function actionTest()
-    {
-        return $this->apiSuccess();
-    }
-
     public function actionAddUser()
     {
-        $userData = $_POST['userData'];
+        $userData = $this->getJsonRest();
         if (!$userData) {
             return $this->apiError([
                 'status' => 'error',
@@ -35,11 +29,11 @@ class UserController extends BaseApiController
         }
 
         $command = new Create\Command();
-        $command->name= $userData["name"];
-        $command->lastName = $userData["lastName"];
-        $command->email = $userData["email"];
-        $command->phone = $userData["phone"];
-        $command->pass = $userData["pass"];
+        $command->name= $userData->name;
+        $command->lastName = $userData->lastName ?? null;
+        $command->email = $userData->email ?? null;
+        $command->phone = $userData->phone ?? null;
+        $command->pass = $userData->pass ?? null;
 
         $handler = Yii::$container->get(Create\Handler::class);
 
@@ -94,21 +88,23 @@ class UserController extends BaseApiController
 
     public function actionDeleteUser()
     {
-        $userId = $_GET['userData'];
-        if (!$userId) {
+        $user = $this->getJsonRest();
+        if (!$user) {
             return $this->apiError([
                 'status' => 'error',
                 'message' => 'Ошибка параметров'
             ]);
         }
-        $user = Yii::$container->get(UserRepository::class)->findUser($userId);
+        $user = Yii::$container->get(UserRepository::class)->findUser($user->id);
 
         Yii::$container->get(UserRepository::class)->delete($user);
+
+        return $this->apiSuccess();
     }
 
     public function actionUpdateUser()
     {
-        $userData = $_POST['updatedUserData'];
+        $userData = $this->getJsonRest();
         if (!$userData) {
             return $this->apiError([
                 'status' => 'error',
@@ -117,10 +113,10 @@ class UserController extends BaseApiController
         }
 
         $command = new Update\Command();
-        $command->id = $userData["id"];
-        $command->name = $userData["name"];
-        $command->email = $userData["email"];
-        $command->phone = $userData["phone"];
+        $command->id = $userData->id;
+        $command->name = $userData->name;
+        $command->email = $userData->email ?? null;
+        $command->phone = $userData->phone ?? null;
 
         $handler = Yii::$container->get(Update\Handler::class);
 

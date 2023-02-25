@@ -7,6 +7,8 @@ $js = <<<JS
 var index = new Vue({
   el: '#index',
   data: {
+    // dev - ''  /  prod = '/web'
+    isProd: '/web',
     messageTelegram: '',
     numbers: [1,3,4,6],
     user: Object,
@@ -21,21 +23,15 @@ var index = new Vue({
   },
   methods: {
       setFfw(){
-          this.user = $.getJSON({
-            url: '/web/users/user/list'
-          }).done(function (data){
+          axios.get(this.isProd +'/users/user/list').then( res => {
+          this.testResp = res.data.data
           });
-          setTimeout(this.updateUser, 1000)
       },
-      updateUser(a) {
-          this.testResp = this.user.responseJSON.data
-      },
+
       sendMessageToTelegram() {
-            $.post({
-            url: '/web/telegrams/telegram/send',
-            data: {telegramMessage: this.messageTelegram}
-            });
-            this.messageTelegram = '' 
+          axios.post(this.isProd +'/telegrams/telegram/send', {message: this.messageTelegram}).then( res => {
+              this.messageTelegram = ''
+          }) 
       },
       onShowAddUserButton() {
           this.addNewUser = true;
@@ -45,46 +41,36 @@ var index = new Vue({
       },
       onAddUserButton() {
           if (this.canAddNewUser) {
-              this.user = {
+              let data = {
                   'name': this.name,
                   'email': this.email,
                   'phone': this.phone
               };
-              var resp = $.post({
-                url: '/web/users/user/add-user',
-                data: {userData: this.user},
-                dataType: 'json',
-                    success: function (data) {
-                    location.reload();
-                    }
-                })
-           }
+              axios.post(this.isProd +'/users/user/add-user', data).then( res => {
+                  this.setFfw()
+                  this.name = '';
+                  this.email = '';
+                  this.phone = '';
+                  this.addNewUser = false;
+              })
+          }
       },
       onEditUserButton(item) {
-          this.showEditUser = true;
           this.test = item;
       },
       onConfirmEditUserButton() {
-        var resp = $.post({
-                url: '/web/users/user/update-user',
-                data: {updatedUserData: this.test},
-                dataType: 'json',
-                success: function (data) {
-                    location.reload();
-                }
-        })
+          axios.post(this.isProd +'/users/user/update-user', this.test ).then(res => {
+              this.setFfw();
+          })
+
       },
       onDeleteUserButton(item) {
           this.test = item;
       },
       onConfirmedDeleteUserButton() {
-           var resp = $.get({
-                url: '/web/users/user/delete-user',
-                data: {userData: this.test.id},
-                success: function (data) {
-                    location.reload();
-                }
-           })
+          axios.put(this.isProd +'/users/user/delete-user', this.test).then(res => {
+              this.setFfw();
+          })
       }
     
   },
@@ -124,7 +110,7 @@ $this->registerJs($js);
                     <th class="col-3" scope="col">Name</th>
                     <th class="col-3" scope="col">Email</th>
                     <th class="col-4" scope="col">Phone</th>
-                    <th class="col-1" scope="col">Actions</th>
+                    <th class="col-1 text-end" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -201,7 +187,7 @@ $this->registerJs($js);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                        <button @click="onConfirmedDeleteUserButton"  type="button" class="btn btn-danger">Удалить</button>
+                        <button @click="onConfirmedDeleteUserButton" data-bs-dismiss="modal" type="button" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
             </div>
