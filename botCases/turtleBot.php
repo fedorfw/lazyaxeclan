@@ -3,7 +3,7 @@
 use telegrams\Domain\Services\SendTelegramService;
 
 require_once __DIR__.'/weatherApi.php';
-require_once __DIR__ . '/../modules/telegram/sendTelegram.php';
+require_once __DIR__ . '/../modules/telegrams/Domain/Services/SendTelegramService.php';
 
 $data = json_decode(file_get_contents('php://input'), TRUE);
 $data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
