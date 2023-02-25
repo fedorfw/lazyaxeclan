@@ -49,7 +49,7 @@ switch ($message)
     default:
         $method = 'sendMessage';
         $send_data = [
-            'text' => 'Не понимаю о чем вы :('
+            'text' => $message
         ];
 }
 
