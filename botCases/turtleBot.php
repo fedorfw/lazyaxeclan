@@ -54,7 +54,7 @@ switch ($message)
 }
 
 $send_data['chat_id'] = $data['chat']['id'];
-$res = sendTelegram::sendTelegramMessage($method, $send_data);
+$res = SendTelegramService::sendTelegramMessage($method, $send_data);
 
 // setWebhook
 // https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://lazyaxeclan.site/botCases/turtleBot.php
