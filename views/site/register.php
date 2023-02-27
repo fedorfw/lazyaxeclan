@@ -1,5 +1,6 @@
 <?php
-
+$crutch = require_once __DIR__.'/../../config/crutch.php';
+$isProd = $crutch['isProd'];
 /** @var yii\web\View $this */
 
 $this->title = 'register';
@@ -8,8 +9,6 @@ $js = <<<JS
 var register = new Vue({
   el: '#register',
   data: {
-    // dev - ''  /  prod = '/web'
-    isProd: '',
     email: '',
     password: '',
     // isValid: false
@@ -21,7 +20,7 @@ var register = new Vue({
                   'email': this.email,
                   'password': this.password
             };
-            axios.post(this.isProd +'/users/user/register', data).then( res => {
+            axios.post('$isProd' +'/users/user/register', data).then( res => {
                   this.password = '';
                   this.email = '';
                   window.location.href = './confirm';
