@@ -9,6 +9,6 @@ return [
         'username' => 'admin@lazyaxeclan.site',
         'password' => 'WOW5fandg125',
         'port' => '587',
-        'encryption' => 'tsl'
+        'encryption' => 'ssl'
     ]
 ];
