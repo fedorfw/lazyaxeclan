@@ -125,13 +125,21 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-//        VueJsAsset::register($this->view);
         return $this->render('about');
     }
 
     public function actionUsers()
     {
-//       $users = Users::find()->all();
         return $this->render('users');
+    }
+
+    public function actionRegister()
+    {
+        return $this->render('register');
+    }
+
+    public function actionConfirm()
+    {
+        return $this->render('confirm');
     }
 }

@@ -144,5 +144,9 @@ class User
         $this->lastName = $lastName;
     }
 
+    public function activate(): void
+    {
+        $this->status->setActive();
+    }
 
 }

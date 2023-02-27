@@ -42,22 +42,23 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
+        'options' => ['class' => ' navbar-nav navbar-collapse justify-content-end'],
         'items' => [
 //            ['label' => 'Дом', 'url' => ['/site/index']],
 //            ['label' => 'О себе', 'url' => ['/site/about']],
 //            ['label' => 'Контакты', 'url' => ['/site/contact']],
 //            ['label' => 'Users', 'url' => ['/site/users']],
-//            Yii::$app->user->isGuest
-//                ? ['label' => 'Вход', 'url' => ['/site/login']]
-//                : '<li class="nav-item">'
-//                    . Html::beginForm(['/site/logout'])
-//                    . Html::submitButton(
-//                        'Выход (' . Yii::$app->user->identity->username . ')',
-//                        ['class' => 'nav-link btn btn-link logout']
-//                    )
-//                    . Html::endForm()
-//                    . '</li>'
+//            ['label' => 'register', 'url' => ['/site/register']],
+            Yii::$app->user->isGuest
+                ? ['label' => 'Вход', 'url' => ['/site/login']]
+                : '<li class="nav-item">'
+                    . Html::beginForm(['/site/logout'])
+                    . Html::submitButton(
+                        'Выход (' . Yii::$app->user->identity->email . ')',
+                        ['class' => 'nav-link btn btn-link logout nav-item']
+                    )
+                    . Html::endForm()
+                    . '</li>'
         ]
     ]);
     NavBar::end();

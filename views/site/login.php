@@ -1,49 +1,67 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var yii\bootstrap5\ActiveForm $form */
-/** @var app\models\LoginForm $model */
-
-use yii\bootstrap5\ActiveForm;
-use yii\bootstrap5\Html;
 
 $this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+
+$js = <<<JS
+var login = new Vue({
+  el: '#login',
+  data: {
+    // dev - ''  /  prod = '/web'
+    isProd: '',
+    email: '',
+    password: ''
+  },
+  methods: {
+      goToRegisterPage() {
+          window.location.href = './register';
+      },
+      login() {
+          let data = {
+              'email': this.email,
+              'password': this.password
+          };
+          axios.post(this.isProd +'/users/user/login', data).then( res => {
+              this.password = '';
+              this.email = '';
+              window.location.href = './';
+          })
+        }
+      }
+//
+//   },
+     // computed: {
+     //    userEmail: function (){
+     //        return this.email
+     //    }
+     //  }
+     //
+  // mounted() {
+  //     this.userEmail();
+  // }
+});
+JS;
+
+$this->registerJs($js);
+
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n{input}\n{error}",
-            'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-            'inputOptions' => ['class' => 'col-lg-3 form-control'],
-            'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-        ],
-    ]); ?>
-
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"offset-lg-1 col-lg-3 custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="offset-lg-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+<div id="login" class="site-login w-600px">
+    <div class="d-flex flex-column  justify-content-center align-items-center p-0">
+        <div>
+        <div class="mb-2">
+             <span class="form-label"> Почта </span>
+                <input v-model="email" type="email" class="form-control"  aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-2">
+            <span > Пароль </span>
+                <input v-model="password" type="password" class="form-control" required>
         </div>
 
-    <?php ActiveForm::end(); ?>
+        <button @click="login" class="btn btn-primary">Войти</button>
+        <button @click="goToRegisterPage" class="btn btn-secondary">Регистрация</button>
+        </div>
 
-    <div class="offset-lg-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
     </div>
+
 </div>

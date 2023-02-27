@@ -50,6 +50,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/users/login' => '/users/user/login',
+                '/users/register' => '/users/user/register',
+                '/users/logout' => '/users/user/logout',
+                '/users/confirm' => '/users/user/confirm',
+                '/users/current' => '/users/user/current',
                        ],
         ],
     ],

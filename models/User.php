@@ -5,9 +5,10 @@ namespace app\models;
 use users\Domain\Interfaces\UserRepositoryInterface;
 use Yii;
 
-class UserOld extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
+    public $email;
     public $username;
     public $password;
     public $authKey;
@@ -36,7 +37,17 @@ class UserOld extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        $userDB = Yii::$container->get(UserRepositoryInterface::class)->findUser($id);
+        if (!$userDB) {
+            return null;
+        }
+        return new static([
+            'id' => $userDB->getId(),
+            'email' => $userDB->getEmail(),
+            'password' => $userDB->getPass(),
+            'authKey' => 'test100key',
+            'accessToken' => '100-token',
+        ]);
     }
 
     /**
@@ -123,6 +134,6 @@ class UserOld extends \yii\base\BaseObject implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return $this->password === md5($password);
     }
 }

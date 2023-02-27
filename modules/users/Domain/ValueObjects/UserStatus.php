@@ -3,8 +3,11 @@
 namespace users\Domain\ValueObjects;
 
 
+use Webmozart\Assert\Assert;
+
 class UserStatus
 {
+    const NEW = 'new';
     const ACTIVE = 'active';
     const BLOCKED = 'blocked';
     const DELETED = 'deleted';
@@ -13,7 +16,7 @@ class UserStatus
 
     public function __construct()
     {
-        $this->value = self::ACTIVE;
+        $this->value = self::NEW;
     }
 
     public function getValue(): string
@@ -21,5 +24,23 @@ class UserStatus
         return $this->value;
     }
 
+    public function setActive()
+    {
+        if ($this->value != self::NEW) {
+            throw new \DomainException('Код уже был подтвержден');
+        }
+        $this->value = self::ACTIVE;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->value == self::ACTIVE;
+    }
+
+    public function change(string $status)
+    {
+        Assert::oneOf($status, [self::NEW, self::ACTIVE, self::BLOCKED, self::DELETED]);
+        $this->value = $status;
+    }
 
 }

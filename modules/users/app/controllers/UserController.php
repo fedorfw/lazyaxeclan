@@ -2,7 +2,11 @@
 
 namespace users\app\controllers;
 
+use app\models\LoginForm;
+use app\models\RegisterForm;
+use app\models\User;
 use app\modules\common\components\BaseApiController;
+use DomainException;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -15,9 +19,22 @@ use yii\web\ForbiddenHttpException;
 use users\Domain\UseCases\GetList;
 use users\Domain\UseCases\Create;
 use users\Domain\UseCases\Update;
+use users\Domain\UseCases\Register;
+use users\Domain\UseCases\Confirm;
 
 class UserController extends BaseApiController
 {
+    /** @var UserRepositoryInterface */
+    private  $users;
+
+
+    public function init()
+    {
+        $this->users = Yii::$container->get(UserRepositoryInterface::class);
+        parent::init();
+    }
+
+
     public function actionAddUser()
     {
         $userData = $this->getJsonRest();
@@ -130,5 +147,123 @@ class UserController extends BaseApiController
         }
 
         return $this->apiSuccess();
+    }
+
+    public function actionRegister()
+    {
+        $json = $this->getJsonRest();
+        if (!$json) {
+            return $this->apiError();
+        }
+
+        $registerForm = new RegisterForm();
+        $registerForm->setAttributes([
+            'email' => $json->email,
+            'password' => $json->password,
+        ]);
+
+        if (!$registerForm->validate()) {
+            return $this->apiError([
+                'status' => 'error',
+                'field_errors' => $registerForm->getErrors()
+            ]);
+        }
+
+        $command = new Register\Command();
+        $command->email = $registerForm->email;
+        $command->password = $registerForm->password;
+
+        try {
+            $user = Yii::$container->get(Register\Handler::class)
+                ->handle($command);
+
+            return $this->apiSuccess();
+        } catch (DomainException $e) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function actionConfirm()
+    {
+        $json = $this->getJsonRest();
+        if (!$json) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка параметров'
+            ]);
+        }
+
+        $command = new Confirm\Command();
+        $command->code = $json->code;
+
+        $handler = Yii::$container->get(Confirm\Handler::class);
+        try {
+            $user = $handler->handle($command);
+            Yii::$app->user->login(User::findIdentity($user->getId()));
+
+            return $this->apiSuccess();
+        } catch (DomainException $e) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function actionLogin()
+    {
+        $json = $this->getJsonRest();
+        if (!$json) {
+            return $this->apiError();
+        }
+
+        if (!Yii::$app->user->isGuest) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Вы уже авторизованы'
+            ]);
+        }
+
+        $loginParams = [
+            'LoginForm' => [
+                'email' => $json->email,
+                'password' => $json->password,
+                'rememberMe' => true
+            ]
+        ];
+
+        $model = new LoginForm();
+        if (!$model->load($loginParams)) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка параметров'
+            ]);
+        }
+        if (!$model->validate()) {
+            Yii::$app->response->statusCode = 401;
+
+            return [
+                'status' => 'error',
+                'message' => implode(',', $model->getFirstErrors()),
+            ];
+        }
+        if (!$model->login()) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => 'Ошибка авторизации попробуйте позже'
+            ]);
+        }
+
+        $user = $this->users->findUser(Yii::$app->user->id);
+        $item = new Item(
+            $user,
+            new UserTransformer()
+        );
+        return (new Manager())
+            ->createData($item)
+            ->toArray();
     }
 }
