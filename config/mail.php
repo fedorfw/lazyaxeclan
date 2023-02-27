@@ -8,7 +8,7 @@ return [
         'host' => 'mx1.hosting.reg.ru.',
         'username' => 'admin@lazyaxeclan.site',
         'password' => 'WOW5fandg125',
-        'port' => '465',
-        'encryption' => 'ssl'
+        'port' => '587',
+        'encryption' => 'tsl'
     ]
 ];
