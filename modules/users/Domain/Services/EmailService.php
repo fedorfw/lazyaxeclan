@@ -27,4 +27,18 @@ class EmailService implements EmailServiceInterface
             ->send();
     }
 
+    public function sendTestEmail (string $text)
+    {
+        $htmlBody = Yii::$app->controller->renderFile('@app/mail/layouts/html.php', [
+            'content' => "HELLO WORLD"
+        ]);
+
+        Yii::$app->mailer->compose()
+            ->setFrom($this->from)
+            ->setTo('fedorfw@mail.ru')
+            ->setSubject('Регистрация на сайте LazyAxeClan')
+            ->setHtmlBody($htmlBody)
+            ->send();
+    }
+
 }

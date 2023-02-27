@@ -15,10 +15,6 @@ class Handler
 
     public function handle(Command $command)
     {
-
-        $this->emailService->sendRegistration('fedorfw@mail.ru', $command->text);
-
-
-
+        $this->emailService->sendTestEmail($command->text);
     }
 }
