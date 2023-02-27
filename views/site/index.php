@@ -21,7 +21,8 @@ var index = new Vue({
     test: 'test',
     testTelegramMessage: null,
     isCount: true,
-    a: 1
+    a: 1,
+    newMail: 'новое письмо тестовое'
   },
   methods: {
       setFfw(){
@@ -92,6 +93,16 @@ var index = new Vue({
       timerFunc() {
           this.testTelegram();
       },
+      sendEmail() {
+              let data = {
+                  'newMail': this.newMail,
+
+              };
+              axios.post('$isProd' +'/users/user/send-mail', data).then( res => {
+                  this.setFfw()
+   
+              })
+      },
 
   },
      computed: {
@@ -123,11 +134,15 @@ $this->registerJs($js);
     <button @click="startCount" class="btn btn-primary mt-5"> старт счетчик </button>
 <hr>
     <div v-if="testTelegramMessage">
-    <div v-for="testmess in testTelegramMessage">
-        {{ testmess.id }} - {{ testmess.userName }} - {{ testmess.message }}
-    </div>
+        <div v-for="testmess in testTelegramMessage">
+            {{ testmess.id }} - {{ testmess.userName }} - {{ testmess.message }}
+        </div>
     </div>
     <br>
+    <hr>
+    <input v-model="newMail" class="form-control" >
+    <button @click="sendEmail" class="btn btn-info">отправить письмо</button>
+    {{ newMail }}
     <div v-if="user">
 <!--        <table class="table table-dark table-striped">-->
 <!--            <thead>-->

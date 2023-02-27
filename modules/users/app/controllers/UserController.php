@@ -21,6 +21,7 @@ use users\Domain\UseCases\Create;
 use users\Domain\UseCases\Update;
 use users\Domain\UseCases\Register;
 use users\Domain\UseCases\Confirm;
+use users\Domain\UseCases\TestEmailSend;
 
 class UserController extends BaseApiController
 {
@@ -265,5 +266,25 @@ class UserController extends BaseApiController
         return (new Manager())
             ->createData($item)
             ->toArray();
+    }
+
+    public function actionSendMail()
+    {
+        $json = $this->getJsonRest();
+
+        $command = new TestEmailSend\Command();
+        $command->text = $json->newMail;
+
+        try {
+            Yii::$container->get(TestEmailSend\Handler::class)
+                ->handle($command);
+
+            return $this->apiSuccess();
+        } catch (DomainException $e) {
+            return $this->apiError([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

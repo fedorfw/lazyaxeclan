@@ -11,7 +11,7 @@ class EmailService implements EmailServiceInterface
 
     public function sendRegistration(string $toEmail, string $code)
     {
-        $url = Yii::$app->urlManager->createAbsoluteUrl(['/ite/login']);
+        $url = Yii::$app->urlManager->createAbsoluteUrl(['/site/login']);
         $content = Yii::$app->controller->renderFile('@app/modules/users/app/mail/register.php', [
             'message' => "Для подтверждения почты укажите код <b style='font-size: 24px;'>{$code}</b> на странице <a href='{$url}'>{$url}</a>",
         ]);
