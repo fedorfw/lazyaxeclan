@@ -6,7 +6,7 @@ return [
     'transport' => [
         'class' => 'Swift_SmtpTransport',
         'host' => 'mail.lazyaxeclan.site',
-        'username' => 'WOW5fandg125',
+        'username' => 'admin@lazyaxeclan.site',
         'password' => 'WOW5fandg125',
         'port' => '465',
         'encryption' => 'ssl'
