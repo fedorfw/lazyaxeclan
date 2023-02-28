@@ -7,14 +7,14 @@ use users\Domain\ValueObjects\UserStatus;
 
 class User
 {
-    private $id;
-    private $email;
-    private $name;
-    private $phone;
-    private $lastName;
-    private $pass;
-    private $role;
-    private $status;
+    private int $id;
+    private string $email;
+    private string $name;
+    private string $phone;
+    private string $lastName;
+    private string $pass;
+    private UserRole $role;
+    private UserStatus $status;
 
 
     public function __construct()
@@ -24,17 +24,17 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPass()
+    public function getPass(): string
     {
         return $this->pass;
     }
 
     /**
-     * @param mixed $pass
+     * @param string $pass
      */
-    public function setPass($pass): void
+    public function setPass(string $pass): void
     {
         $this->pass = $pass;
     }
@@ -73,73 +73,73 @@ class User
 
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
-    public function setEmail($email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
-    public function setName($name): void
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
     /**
-     * @param mixed $phone
+     * @param string $phone
      */
-    public function setPhone($phone): void
+    public function setPhone(string $phone): void
     {
         $this->phone = $phone;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
     /**
-     * @param mixed $lastName
+     * @param string $lastName
      */
-    public function setLastname($lastName): void
+    public function setLastname(string $lastName): void
     {
         $this->lastName = $lastName;
     }

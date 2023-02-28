@@ -22,63 +22,60 @@ var index = new Vue({
     testTelegramMessage: null,
     isCount: true,
     a: 1,
-    newMail: 'новое письмо тестовое'
   },
   methods: {
-      setFfw(){
-          axios.get('$isProd' +'/users/user/list').then( res => {
-          this.testResp = res.data.data
-          });
-      },
+//      setFfw(){
+//          axios.get('$isProd' +'/users/user/list').then( res => {
+//          this.testResp = res.data.data
+//          });
+//      },
 
       sendMessageToTelegram() {
           axios.post('$isProd' +'/telegrams/telegram/send', {message: this.messageTelegram}).then( res => {
               this.messageTelegram = ''
           }) 
       },
-      onShowAddUserButton() {
-          this.addNewUser = true;
-      },
-      onCancelAddUserButton() {
-          this.addNewUser = false;
-      },
-      onAddUserButton() {
-          if (this.canAddNewUser) {
-              let data = {
-                  'name': this.name,
-                  'email': this.email,
-                  'phone': this.phone
-              };
-              axios.post('$isProd' +'/users/user/add-user', data).then( res => {
-                  this.setFfw()
-                  this.name = '';
-                  this.email = '';
-                  this.phone = '';
-                  this.addNewUser = false;
-              })
-          }
-      },
-      onEditUserButton(item) {
-          this.test = item;
-      },
-      onConfirmEditUserButton() {
-          axios.post('$isProd' +'/users/user/update-user', this.test ).then(res => {
-              this.setFfw();
-          })
-
-      },
-      onDeleteUserButton(item) {
-          this.test = item;
-      },
-      onConfirmedDeleteUserButton() {
-          axios.put('$isProd' +'/users/user/delete-user', this.test).then(res => {
-              this.setFfw();
-          })
-      },
+      // onShowAddUserButton() {
+      //     this.addNewUser = true;
+      // },
+      // onCancelAddUserButton() {
+      //     this.addNewUser = false;
+      // },
+//      onAddUserButton() {
+//          if (this.canAddNewUser) {
+//              let data = {
+//                  'name': this.name,
+//                  'email': this.email,
+//                  'phone': this.phone
+//              };
+//              axios.post('$isProd' +'/users/user/add-user', data).then( res => {
+//                  this.setFfw()
+//                  this.name = '';
+//                  this.email = '';
+//                  this.phone = '';
+//                  this.addNewUser = false;
+//              })
+//          }
+//      },
+//       onEditUserButton(item) {
+//           this.test = item;
+//       },
+//      onConfirmEditUserButton() {
+//          axios.post('$isProd' +'/users/user/update-user', this.test ).then(res => {
+//              this.setFfw();
+//          })
+//      },
+//       onDeleteUserButton(item) {
+//           this.test = item;
+//       },
+//      onConfirmedDeleteUserButton() {
+//          axios.put('$isProd' +'/users/user/delete-user', this.test).then(res => {
+//              this.setFfw();
+//          })
+//      },
       testTelegram() {
           axios.get('$isProd' +'/telegrams/telegram/get-message').then( res => {
           this.testTelegramMessage = res.data.data;
-          console.log(this.testTelegramMessage);
           });
       },
       startCount() {
@@ -93,29 +90,24 @@ var index = new Vue({
       timerFunc() {
           this.testTelegram();
       },
-      sendEmail() {
-              let data = {
-                  'newMail': this.newMail,
-
-              };
-              axios.post('$isProd' +'/users/user/send-mail', data).then( res => {
-                  this.setFfw()
-   
-              })
-      },
-
   },
      computed: {
-       canAddNewUser: function () {
-           if (this.name !== '' && this.email !== '' && this.phone !== '') {
-               return true
-           }
-           return false
+      getCountState: function () {
+          if (this.isCount) {
+              return 'Стою курю'
+          } 
+          return 'Работаю'
       }
-  },
-  mounted() {
-      this.setFfw();
-  }
+       // canAddNewUser: function () {
+       //     if (this.name !== '' && this.email !== '' && this.phone !== '') {
+       //         return true
+       //     }
+       //     return false
+      }
+  // },
+  // mounted() {
+  //     this.setFfw();
+  // }
 });
 JS;
 
@@ -130,20 +122,8 @@ $this->registerJs($js);
             <button @click.prevent="sendMessageToTelegram" type="submit" class="btn btn-primary mt-1">Отправить</button>
         </label>
     </div>
+    <button @click="startCount" class="btn btn-dark mt-5"> Кнопка - {{ getCountState }} </button>
 
-    <button @click="startCount" class="btn btn-primary mt-5"> старт счетчик </button>
-<hr>
-    <div v-if="testTelegramMessage">
-        <div v-for="testmess in testTelegramMessage">
-            {{ testmess.id }} - {{ testmess.userName }} - {{ testmess.message }}
-        </div>
-    </div>
-    <br>
-    <hr>
-    <input v-model="newMail" class="form-control" >
-    <button @click="sendEmail" class="btn btn-info">отправить письмо</button>
-    {{ newMail }}
-    <div v-if="user">
 <!--        <table class="table table-dark table-striped">-->
 <!--            <thead>-->
 <!--                <tr>-->
@@ -234,7 +214,6 @@ $this->registerJs($js);
 <!--            </div>-->
 <!--        </div>-->
 
-    </div>
 </div>
 
 

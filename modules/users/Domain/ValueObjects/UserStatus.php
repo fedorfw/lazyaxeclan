@@ -12,7 +12,7 @@ class UserStatus
     const BLOCKED = 'blocked';
     const DELETED = 'deleted';
 
-    private $value;
+    private string $value;
 
     public function __construct()
     {

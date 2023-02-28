@@ -51,7 +51,7 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->flush();
     }
 
-    public function getlist()
+    public function getList()
     {
         return $this->entityManager->getRepository(User::class)
             ->findAll();

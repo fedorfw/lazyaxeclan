@@ -16,6 +16,6 @@ interface UserRepositoryInterface
 
     public function testGet($hi): string;
 
-    public function getlist();
+    public function getList();
 
 }

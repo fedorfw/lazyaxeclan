@@ -4,6 +4,7 @@ namespace users\Domain\UseCases\Register;
 
 class Command
 {
-    public $email;
-    public $password;
+    public string $email;
+    public string $password;
 }
+

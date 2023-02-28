@@ -4,12 +4,12 @@ namespace users\Domain\UseCases\Create;
 
 class Command
 {
-    public $name;
-    public $lastName;
-    public $email;
-    public $phone;
-    public $pass;
-    public $role;
-    public $status;
+    public string $name;
+    public string $lastName;
+    public string $email;
+    public string $phone;
+    public string $pass;
+    public string $role;
+    public string $status;
 
 }
