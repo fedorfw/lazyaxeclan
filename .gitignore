@@ -35,6 +35,7 @@ tests/_support/_generated
 config/db.php
 config/db_doctrine.php
 config/telegramToken.php
+config/crutch.php
 
 #vagrant folder
 /.vagrant
