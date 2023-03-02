@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="products\Domain\Entities\Product" table="products">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="title" type="string" column="title" />
+        <field name="text" type="string" column="text" />
+        <field name="image" type="string" column="image" />
+        <field name="tag" type="string" column="tag" />
+        <field name="price" type="integer" column="price" />
+        <field name="quantity" type="integer" column="quantity" />
+        <field name="ownerUserId" type="integer" column="owner_user_id" />
+
+        <embedded name="status" class="products\Domain\ValueObjects\ProductStatus" use-column-prefix="false" />
+
+    </entity>
+</doctrine-mapping>

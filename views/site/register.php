@@ -11,7 +11,7 @@ var register = new Vue({
   data: {
     email: '',
     password: '',
-    // isValid: false
+    errorMessage: null
   },
   methods: {
       onRegisterButton() {
@@ -24,7 +24,12 @@ var register = new Vue({
                   this.password = '';
                   this.email = '';
                   window.location.href = './confirm';
-            })
+            }).catch ( error => {
+            this.errorMessage = error.response.data.message
+            setTimeout(() => {
+                this.errorMessage = null
+            }, 2000)
+          })
         }
       }
       ,
@@ -55,6 +60,7 @@ $this->registerJs($js);
 
 ?>
 <div id="register" class="site-login w-600px">
+    <div v-if="errorMessage" class="alert alert-danger"> {{ errorMessage }}</div>
     <div class="d-flex flex-column  justify-content-center align-items-center p-0">
         <div class="mb-2">
             <h4> Регистрация на сайте</h4>

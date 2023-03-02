@@ -123,9 +123,9 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionTelegram()
     {
-        return $this->render('about');
+        return $this->render('telegram');
     }
 
     public function actionUsers()
@@ -141,5 +141,14 @@ class SiteController extends Controller
     public function actionConfirm()
     {
         return $this->render('confirm');
+    }
+
+    public function actionMyProducts()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->render('my-products');
+        }
+
+        return $this->render('error', ['message' =>  'Доступ только для зарегистрированных пользователей']);
     }
 }

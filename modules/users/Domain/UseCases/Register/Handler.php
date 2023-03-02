@@ -33,7 +33,7 @@ class Handler
     {
         $user = $this->user->findUserByEmail($command->email);
         if ($user) {
-            throw new \DomainException('Такой пользовтель уже зарегистрирова');
+            throw new \DomainException('Такой пользовтель уже зарегистрирован.');
         }
         $user = new User();
 

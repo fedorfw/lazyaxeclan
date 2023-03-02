@@ -17,6 +17,9 @@ return [
             __DIR__ . '/../modules/users/Infrastructure/Mappings' => 'users\Domain\Entities',
             __DIR__ . '/../modules/users/Infrastructure/Mappings/ValueObjects' => 'users\Domain\ValueObjects',
 
+            __DIR__ . '/../modules/products/Infrastructure/Mappings' => 'products\Domain\Entities',
+            __DIR__ . '/../modules/products/Infrastructure/Mappings/ValueObjects' => 'products\Domain\ValueObjects',
+
         ], 'Mapping.xml'));
         $config->setMetadataDriverImpl($driver);
         $config->setProxyDir(__DIR__ . '/../runtime/proxies');
@@ -49,5 +52,9 @@ return [
     \users\Domain\Interfaces\EmailServiceInterface::class => function (Container $container) {
         return $container->get(\users\Domain\Services\EmailService::class);
     },
+    // PRODUCTS MODULE
+    \products\Domain\Interfaces\ProductRepositoryInterface::class => function (Container $container) {
+        return $container->get(\products\Infrastructure\Repositories\ProductRepository::class);
+    }
 
 ];

@@ -45,10 +45,15 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => ' navbar-nav navbar-collapse justify-content-end'],
         'items' => [
 //            ['label' => 'Дом', 'url' => ['/site/index']],
-//            ['label' => 'О себе', 'url' => ['/site/about']],
+            ['label' => 'Телега', 'url' => ['/site/telegram']],
+//            ['label' => 'Мои товары', 'url' => ['/site/my-products']],
 //            ['label' => 'Контакты', 'url' => ['/site/contact']],
 //            ['label' => 'Users', 'url' => ['/site/users']],
 //            ['label' => 'register', 'url' => ['/site/register']],
+            !Yii::$app->user->isGuest
+                ?  ['label' => 'Мои товары', 'url' => ['/site/my-products']]
+                : ['label' => '', 'url' => ['']],
+
             Yii::$app->user->isGuest
                 ? ['label' => 'Вход', 'url' => ['/site/login']]
                 : '<li class="nav-item">'

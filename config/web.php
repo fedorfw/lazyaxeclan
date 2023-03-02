@@ -62,10 +62,13 @@ $config = [
     ],
     'modules' => [
         'users' => [
-            'class' => \users\app\UsersModule::class,
+            'class' => \users\app\UsersModule::class
         ],
         'telegrams' => [
             'class' => \telegrams\app\TelegramsModule::class
+        ],
+        'products' => [
+            'class' => \products\app\ProductsModule::class
         ],
     ],
     'params' => $params,
