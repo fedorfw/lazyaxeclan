@@ -1,5 +1,6 @@
 <?php
-
+$crutch = require_once __DIR__.'/../../config/crutch.php';
+$isProd = $crutch['isProd'];
 /** @var yii\web\View $this */
 
 $this->title = 'Login';
@@ -23,7 +24,7 @@ var login = new Vue({
               'email': this.email,
               'password': this.password
           };
-          axios.post(this.isProd +'/users/user/login', data).then( res => {
+          axios.post('$isProd' +'/users/user/login', data).then( res => {
               this.password = '';
               this.email = '';
               window.location.href = './';
